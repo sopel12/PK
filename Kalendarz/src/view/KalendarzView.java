@@ -39,13 +39,6 @@ public class KalendarzView extends JFrame {
 		monthGridPanel.setBounds(10, 65, 474, 245);
 		contentPane.add(monthGridPanel);
 		monthGridPanel.setLayout(new GridLayout(7, 7, 0, 0));
-
-		String[] dayNames = { "PN", "WT", "ŚR", "CZW", "PT", "SOB", "ND" };
-		for (int i = 0; i < labels.length; i++) {
-			labels[i] = new JLabel(dayNames[i]);
-			labels[i].setHorizontalAlignment(JLabel.CENTER);
-			monthGridPanel.add(labels[i]);
-		}
 	}
 
 	
@@ -57,25 +50,25 @@ public class KalendarzView extends JFrame {
 			// buttonFields[i].setBorderPainted(false);
 			buttonFields[i].setFocusPainted(false);
 			buttonFields[i].setContentAreaFilled(false);
-			buttonFields[i].addMouseListener(new MouseListener() {
-
-				public void mouseClicked(MouseEvent e) {
-					System.out.println("test");
-				}
-
-				public void mousePressed(MouseEvent e) {
-				}
-
-				public void mouseReleased(MouseEvent e) {
-				}
-
-				public void mouseEntered(MouseEvent e) {
-				}
-
-				public void mouseExited(MouseEvent e) {
-				}
-
-			});
+//			buttonFields[i].addMouseListener(new MouseListener() {
+//
+//				public void mouseClicked(MouseEvent e) {
+//					System.out.println("test");
+//				}
+//
+//				public void mousePressed(MouseEvent e) {
+//				}
+//
+//				public void mouseReleased(MouseEvent e) {
+//				}
+//
+//				public void mouseEntered(MouseEvent e) {
+//				}
+//
+//				public void mouseExited(MouseEvent e) {
+//				}
+//
+//			});
 			monthGridPanel.add(buttonFields[i]);
 		}
 	}
@@ -87,6 +80,14 @@ public class KalendarzView extends JFrame {
 		}
 	}
 
+	public void setLabelsNames(String[] dayNames){
+		for (int i = 0; i < labels.length; i++) {
+			labels[i] = new JLabel(dayNames[i]);
+			labels[i].setHorizontalAlignment(JLabel.CENTER);
+			monthGridPanel.add(labels[i]);
+		}
+	}
+	
 	public void crateYearSelectComboBox(String[] getYears) {
 		yearSelectComboBox = new JComboBox(getYears);
 		yearSelectComboBox.setBounds(10, 11, 147, 43);
@@ -111,6 +112,14 @@ public class KalendarzView extends JFrame {
 
 	public JComboBox getYearSelectComboBox() {
 		return yearSelectComboBox;
+	}
+	
+	public int getYearSelectComboBoxSelectedItem() {
+		return Integer.parseInt(yearSelectComboBox.getSelectedItem().toString());
+	}
+	
+	public int getMonthSelectComboBoxSelectedItem() {
+		return monthSelectComboBox.getSelectedIndex();
 	}
 
 	public void setYearSelectComboBox(JComboBox yearSelectComboBox) {

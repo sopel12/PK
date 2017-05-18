@@ -3,7 +3,7 @@ package model;
 import java.util.Calendar;
 
 public class KalendarzModel {
-	private String[] years;
+//	private String[] years;
 	private String[] months;
 	private String monthsNames[] = { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpien",
 			"Wrzesien", "Pażdziernik", "Listopad", "Grudzień" };
@@ -54,13 +54,12 @@ public class KalendarzModel {
 		return months;
 	}
 
-//	public void setMonths(String[] months) {
-//		this.months = months;
-//	}
+	public void setMonths(String[] months) {
+		this.months = months;
+	}
 	
 	public String[] updateCalendar(int year, int month) {
 		int day = 0;
-		// System.out.println(year + " " + month + " " + leapYear(year));
 		if (month == 1 && leapYear(year)) {
 			monthDays[month] = 29;
 		} else {
