@@ -21,14 +21,11 @@ public class KalendarzView extends JFrame {
 	private JPanel monthGridPanel = new JPanel();;
 	private JButton[] buttonFields = new JButton[42];
 	private JLabel[] labels = new JLabel[7];
-	private String monthsNames[] = { "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpien",
-			"Wrzesien", "Pażdziernik", "Listopad", "Grudzień" };
-	// private final JComboBox yearSelectComboBox = new JComboBox(getYears());
 	private JComboBox yearSelectComboBox;
 	private JComboBox monthSelectComboBox;
 
 	int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-	
+
 	private int d_year = Calendar.getInstance().get(Calendar.YEAR);
 	private int d_month = Calendar.getInstance().get(Calendar.MONTH);
 
@@ -42,40 +39,11 @@ public class KalendarzView extends JFrame {
 		monthGridPanel.setBounds(10, 65, 474, 245);
 		contentPane.add(monthGridPanel);
 		monthGridPanel.setLayout(new GridLayout(7, 7, 0, 0));
-
-		// yearSelectComboBox.setBounds(10, 11, 147, 43);
-		// contentPane.add(yearSelectComboBox);
-
-		// monthSelectComboBox.setBounds(180, 11, 147, 43);
-		// contentPane.add(monthSelectComboBox);
+		
+		
 		int d_year = Calendar.getInstance().get(Calendar.YEAR);
 		int d_month = Calendar.getInstance().get(Calendar.MONTH);
 
-		// yearSelectComboBox.setSelectedIndex(d_year - 1900);
-		// monthSelectComboBox.setSelectedIndex(d_month);
-
-		// System.out.println(d_year + " " + d_month);
-
-		// yearSelectComboBox.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent arg0) {
-		// int year =
-		// Integer.parseInt(yearSelectComboBox.getSelectedItem().toString());
-		// int month = monthSelectComboBox.getSelectedIndex();
-		// updateCalendar(year, month);
-		// }
-		// });
-
-		// monthSelectComboBox.addActionListener(new ActionListener() {
-		// public void actionPerformed(ActionEvent arg0) {
-		//
-		// int year =
-		// Integer.parseInt(yearSelectComboBox.getSelectedItem().toString());
-		// int month = monthSelectComboBox.getSelectedIndex();
-		// updateCalendar(year, month);
-		// }
-		// });
-		// btnNewButton.setBounds(342, 11, 142, 43);
-		// contentPane.add(btnNewButton);
 
 		String[] dayNames = { "PN", "WT", "ŚR", "CZW", "PT", "SOB", "ND" };
 		for (int i = 0; i < labels.length; i++) {
@@ -117,33 +85,16 @@ public class KalendarzView extends JFrame {
 	}
 
 	protected void updateCalendar(int year, int month) {
-//		int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		int y = 1900;
-		int m = 0;
+		// int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+		// int y = 1900;
+		// int m = 0;
 		int day = 0;
-		System.out.println(year + " " + month + " " + leapYear(year));
+		// System.out.println(year + " " + month + " " + leapYear(year));
 		if (month == 1 && leapYear(year)) {
 			monthDays[month] = 29;
 		} else {
 			monthDays[month] = 28;
 		}
-//		while (colbeKina(year, month, y, m)) {
-//			if (month == 1 && leapYear(year)) {
-//				day = 29;
-//				monthDays[month] = 29;
-//			} else {
-//				day = monthDays[month];
-//			}
-//
-//			m++;
-//			if (m == 12) {
-//				m = 0;
-//				y++;
-//			}
-//
-//			day = day % 7;
-//		}
-
 		Calendar c = Calendar.getInstance();
 		c.set(year, month, 1);
 
@@ -195,24 +146,5 @@ public class KalendarzView extends JFrame {
 		}
 		return false;
 	}
-
-	private boolean colbeKina(int year, int month, int y, int m) {
-		if (year == y && month == m) {
-			return false;
-		}
-		return true;
-	}
-
-//	private String[] getMonths() {
-//		return monthsNames;
-//	}
-//
-//	private String[] getYears() {
-//		String[] str = new String[201];
-//		for (int i = 1900, j = 0; i < 2100; i++, j++) {
-//			str[j] = String.valueOf(i);
-//		}
-//		return str;
-//	}
 
 }
