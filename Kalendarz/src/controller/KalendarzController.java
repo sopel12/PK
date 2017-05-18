@@ -13,5 +13,7 @@ public class KalendarzController {
 
 		theKalendarzView.crateYearSelectComboBox(theKalendarzModel.getYears());
 		theKalendarzView.crateMonthSelectComboBox(theKalendarzModel.getMonthsNames());
+		theKalendarzView.addYearSelectComboBoxListener(new YearComboBoxListener(this.theKalendarzView));
+		theKalendarzView.addMonthSelectComboBoxListener(new MonthComboBoxListener(this.theKalendarzView));
 	}
 }

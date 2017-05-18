@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 
 public class KalendarzView extends JFrame {
 
+	
+
 	private JPanel contentPane = new JPanel();
 	private JPanel monthGridPanel = new JPanel();;
 	private JButton[] buttonFields = new JButton[42];
@@ -84,7 +86,7 @@ public class KalendarzView extends JFrame {
 		updateCalendar(d_year, d_month);
 	}
 
-	protected void updateCalendar(int year, int month) {
+	public void updateCalendar(int year, int month) {
 		// int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 		// int y = 1900;
 		// int m = 0;
@@ -115,13 +117,10 @@ public class KalendarzView extends JFrame {
 		yearSelectComboBox.setBounds(10, 11, 147, 43);
 		yearSelectComboBox.setSelectedIndex(d_year - 1900);
 		contentPane.add(yearSelectComboBox);
-		yearSelectComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				int year = Integer.parseInt(yearSelectComboBox.getSelectedItem().toString());
-				int month = monthSelectComboBox.getSelectedIndex();
-				updateCalendar(year, month);
-			}
-		});
+	}
+	
+	public void addYearSelectComboBoxListener(ActionListener listenForSelectYear){
+		yearSelectComboBox.addActionListener(listenForSelectYear);
 	}
 
 	public void crateMonthSelectComboBox(String[] getMonths) {
@@ -129,22 +128,32 @@ public class KalendarzView extends JFrame {
 		monthSelectComboBox.setBounds(180, 11, 147, 43);
 		monthSelectComboBox.setSelectedIndex(d_month);
 		contentPane.add(monthSelectComboBox);
-		monthSelectComboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				int year = Integer.parseInt(yearSelectComboBox.getSelectedItem().toString());
-				int month = monthSelectComboBox.getSelectedIndex();
-				updateCalendar(year, month);
-			}
-		});
-
 	}
-
+	
+	public void addMonthSelectComboBoxListener(ActionListener listenForSelectMonth){
+		monthSelectComboBox.addActionListener(listenForSelectMonth);
+	}
+	
 	private boolean leapYear(int year) {
 		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 			return true;
 		}
 		return false;
 	}
+	
+	public JComboBox getYearSelectComboBox() {
+		return yearSelectComboBox;
+	}
 
+	public void setYearSelectComboBox(JComboBox yearSelectComboBox) {
+		this.yearSelectComboBox = yearSelectComboBox;
+	}
+
+	public JComboBox getMonthSelectComboBox() {
+		return monthSelectComboBox;
+	}
+
+	public void setMonthSelectComboBox(JComboBox monthSelectComboBox) {
+		this.monthSelectComboBox = monthSelectComboBox;
+	}
 }
