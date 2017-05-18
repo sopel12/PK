@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Calendar;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -16,9 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class KalendarzView extends JFrame {
-
-	
-
 	private JPanel contentPane = new JPanel();
 	private JPanel monthGridPanel = new JPanel();;
 	private JButton[] buttonFields = new JButton[42];
@@ -41,11 +39,6 @@ public class KalendarzView extends JFrame {
 		monthGridPanel.setBounds(10, 65, 474, 245);
 		contentPane.add(monthGridPanel);
 		monthGridPanel.setLayout(new GridLayout(7, 7, 0, 0));
-		
-		
-		int d_year = Calendar.getInstance().get(Calendar.YEAR);
-		int d_month = Calendar.getInstance().get(Calendar.MONTH);
-
 
 		String[] dayNames = { "PN", "WT", "ŚR", "CZW", "PT", "SOB", "ND" };
 		for (int i = 0; i < labels.length; i++) {
@@ -53,7 +46,10 @@ public class KalendarzView extends JFrame {
 			labels[i].setHorizontalAlignment(JLabel.CENTER);
 			monthGridPanel.add(labels[i]);
 		}
+	}
 
+	
+	public void createButtonFielsGrid(){
 		for (int i = 0; i < buttonFields.length; i++) {
 			buttonFields[i] = new JButton();
 			// buttonFields[i].setEditable(false);
@@ -82,33 +78,12 @@ public class KalendarzView extends JFrame {
 			});
 			monthGridPanel.add(buttonFields[i]);
 		}
-
-		updateCalendar(d_year, d_month);
 	}
-
-	public void updateCalendar(int year, int month) {
-		// int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-		// int y = 1900;
-		// int m = 0;
-		int day = 0;
-		// System.out.println(year + " " + month + " " + leapYear(year));
-		if (month == 1 && leapYear(year)) {
-			monthDays[month] = 29;
-		} else {
-			monthDays[month] = 28;
-		}
-		Calendar c = Calendar.getInstance();
-		c.set(year, month, 1);
-
-		int day_of_week = c.get(Calendar.DAY_OF_WEEK);
-		day = Math.floorMod(day_of_week - 2, 7);
-
+	
+	
+	public void updateButtonFielsGrid(String[] newButtonsText){
 		for (int i = 0; i < buttonFields.length; i++) {
-			buttonFields[i].setText("");
-		}
-		for (int i = 1, j = day; i <= monthDays[month]; i++, j++) {
-			buttonFields[j].setText(String.valueOf(i));
-			buttonFields[j].setFocusPainted(true);
+			buttonFields[i].setText(newButtonsText[i]);
 		}
 	}
 
@@ -118,8 +93,8 @@ public class KalendarzView extends JFrame {
 		yearSelectComboBox.setSelectedIndex(d_year - 1900);
 		contentPane.add(yearSelectComboBox);
 	}
-	
-	public void addYearSelectComboBoxListener(ActionListener listenForSelectYear){
+
+	public void addYearSelectComboBoxListener(ActionListener listenForSelectYear) {
 		yearSelectComboBox.addActionListener(listenForSelectYear);
 	}
 
@@ -129,18 +104,11 @@ public class KalendarzView extends JFrame {
 		monthSelectComboBox.setSelectedIndex(d_month);
 		contentPane.add(monthSelectComboBox);
 	}
-	
-	public void addMonthSelectComboBoxListener(ActionListener listenForSelectMonth){
+
+	public void addMonthSelectComboBoxListener(ActionListener listenForSelectMonth) {
 		monthSelectComboBox.addActionListener(listenForSelectMonth);
 	}
-	
-	private boolean leapYear(int year) {
-		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
-			return true;
-		}
-		return false;
-	}
-	
+
 	public JComboBox getYearSelectComboBox() {
 		return yearSelectComboBox;
 	}
@@ -155,5 +123,13 @@ public class KalendarzView extends JFrame {
 
 	public void setMonthSelectComboBox(JComboBox monthSelectComboBox) {
 		this.monthSelectComboBox = monthSelectComboBox;
+	}
+
+	public JButton[] getButtonFields() {
+		return buttonFields;
+	}
+
+	public void setButtonFields(JButton[] buttonFields) {
+		this.buttonFields = buttonFields;
 	}
 }

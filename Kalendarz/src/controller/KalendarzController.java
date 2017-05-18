@@ -13,7 +13,14 @@ public class KalendarzController {
 
 		theKalendarzView.crateYearSelectComboBox(theKalendarzModel.getYears());
 		theKalendarzView.crateMonthSelectComboBox(theKalendarzModel.getMonthsNames());
-		theKalendarzView.addYearSelectComboBoxListener(new YearComboBoxListener(this.theKalendarzView));
-		theKalendarzView.addMonthSelectComboBoxListener(new MonthComboBoxListener(this.theKalendarzView));
+		theKalendarzView.addYearSelectComboBoxListener(new YearComboBoxListener(this.theKalendarzView, this.theKalendarzModel));
+		theKalendarzView.addMonthSelectComboBoxListener(new MonthComboBoxListener(this.theKalendarzView, this.theKalendarzModel));
+		
+		int year = Integer.parseInt(theKalendarzView.getYearSelectComboBox().getSelectedItem().toString());
+		int month = theKalendarzView.getMonthSelectComboBox().getSelectedIndex();
+
+		theKalendarzView.createButtonFielsGrid();
+		theKalendarzView.updateButtonFielsGrid(theKalendarzModel.updateCalendar(year, month));
 	}
+	
 }

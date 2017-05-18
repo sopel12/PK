@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Calendar;
+
 public class KalendarzModel {
 	private String[] years;
 	private String[] months;
@@ -7,9 +9,9 @@ public class KalendarzModel {
 			"Wrzesien", "Pażdziernik", "Listopad", "Grudzień" };
 	private int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private String[] dayNames = { "PN", "WT", "ŚR", "CZW", "PT", "SOB", "ND" };
+	private String[] newButtonsText = new String[42];
 	
 	public KalendarzModel() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public String[] getMonthsNames() {
@@ -43,7 +45,7 @@ public class KalendarzModel {
 		}
 		return years;
 	}
-
+	
 //	public void setYears(String[] years) {
 //		this.years = years;
 //	}
@@ -55,4 +57,34 @@ public class KalendarzModel {
 //	public void setMonths(String[] months) {
 //		this.months = months;
 //	}
+	
+	public String[] updateCalendar(int year, int month) {
+		int day = 0;
+		// System.out.println(year + " " + month + " " + leapYear(year));
+		if (month == 1 && leapYear(year)) {
+			monthDays[month] = 29;
+		} else {
+			monthDays[month] = 28;
+		}
+		Calendar c = Calendar.getInstance();
+		c.set(year, month, 1);
+
+		int day_of_week = c.get(Calendar.DAY_OF_WEEK);
+		day = Math.floorMod(day_of_week - 2, 7);
+
+		for (int i = 0; i < newButtonsText.length; i++) {
+			newButtonsText[i] = "";
+		}
+		for (int i = 1, j = day; i <= monthDays[month]; i++, j++) {
+			newButtonsText[j] = Integer.toString(i);
+		}
+		return newButtonsText;
+	}
+	
+	private boolean leapYear(int year) {
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+			return true;
+		}
+		return false;
+	}
 }
