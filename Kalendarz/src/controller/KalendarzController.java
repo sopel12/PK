@@ -10,5 +10,8 @@ public class KalendarzController {
 	public KalendarzController(KalendarzView theKalendarzView, KalendarzModel theKalendarzModel){
 		this.theKalendarzView = theKalendarzView;
 		this.theKalendarzModel = theKalendarzModel;
+
+		theKalendarzView.crateYearSelectComboBox(theKalendarzModel.getYears());
+		theKalendarzView.crateMonthSelectComboBox(theKalendarzModel.getMonthsNames());
 	}
 }
