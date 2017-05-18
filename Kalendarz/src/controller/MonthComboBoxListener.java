@@ -16,8 +16,8 @@ public class MonthComboBoxListener implements ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		int year = Integer.parseInt(theKalendarzView.getYearSelectComboBox().getSelectedItem().toString());
-		int month = theKalendarzView.getMonthSelectComboBox().getSelectedIndex();
+		int year = theKalendarzView.getYearSelectComboBoxSelectedItem();
+		int month = theKalendarzView.getMonthSelectComboBoxSelectedItem();
 		theKalendarzView.updateButtonFielsGrid(theKalendarzModel.updateCalendar(year, month));
 	}
 }

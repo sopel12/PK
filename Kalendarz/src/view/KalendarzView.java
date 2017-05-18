@@ -23,9 +23,6 @@ public class KalendarzView extends JFrame {
 	private JLabel[] labels = new JLabel[7];
 	private JComboBox yearSelectComboBox;
 	private JComboBox monthSelectComboBox;
-
-	int[] monthDays = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
-
 	private int d_year = Calendar.getInstance().get(Calendar.YEAR);
 	private int d_month = Calendar.getInstance().get(Calendar.MONTH);
 
@@ -89,7 +86,7 @@ public class KalendarzView extends JFrame {
 	}
 	
 	public void crateYearSelectComboBox(String[] getYears) {
-		yearSelectComboBox = new JComboBox(getYears);
+		yearSelectComboBox = new JComboBox<String>(getYears);
 		yearSelectComboBox.setBounds(10, 11, 147, 43);
 		yearSelectComboBox.setSelectedIndex(d_year - 1900);
 		contentPane.add(yearSelectComboBox);
@@ -100,7 +97,7 @@ public class KalendarzView extends JFrame {
 	}
 
 	public void crateMonthSelectComboBox(String[] getMonths) {
-		monthSelectComboBox = new JComboBox(getMonths);
+		monthSelectComboBox = new JComboBox<String>(getMonths);
 		monthSelectComboBox.setBounds(180, 11, 147, 43);
 		monthSelectComboBox.setSelectedIndex(d_month);
 		contentPane.add(monthSelectComboBox);

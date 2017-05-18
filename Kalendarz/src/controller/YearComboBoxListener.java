@@ -14,10 +14,10 @@ public class YearComboBoxListener implements ActionListener {
 		this.theKalendarzView = theKalendarzView;
 		this.theKalendarzModel = theKalendarzModel;
 	}
+	
 	public void actionPerformed(ActionEvent e) {
-		int year = Integer.parseInt(theKalendarzView.getYearSelectComboBox().getSelectedItem().toString());
-		int month = theKalendarzView.getMonthSelectComboBox().getSelectedIndex();
-		theKalendarzModel.updateCalendar(year, month);
+		int year = theKalendarzView.getYearSelectComboBoxSelectedItem();
+		int month = theKalendarzView.getMonthSelectComboBoxSelectedItem();
 		theKalendarzView.updateButtonFielsGrid(theKalendarzModel.updateCalendar(year, month));
 	}
 

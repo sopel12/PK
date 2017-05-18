@@ -17,7 +17,6 @@ public class KalendarzController {
 		theKalendarzView.addYearSelectComboBoxListener(new YearComboBoxListener(this.theKalendarzView, this.theKalendarzModel));
 		theKalendarzView.addMonthSelectComboBoxListener(new MonthComboBoxListener(this.theKalendarzView, this.theKalendarzModel));
 		
-//		int year = Integer.parseInt(theKalendarzView.getYearSelectComboBox().getSelectedItem().toString());
 		int year = theKalendarzView.getYearSelectComboBoxSelectedItem();
 		int month = theKalendarzView.getMonthSelectComboBoxSelectedItem();
 
