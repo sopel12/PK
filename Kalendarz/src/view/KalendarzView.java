@@ -121,23 +121,28 @@ public class KalendarzView extends JFrame {
 		int y = 1900;
 		int m = 0;
 		int day = 0;
-
-		while (colbeKina(year, month, y, m)) {
-			if (month == 1 && leapYear(year)) {
-				day = 29;
-				monthDays[month] = 29;
-			} else {
-				day = monthDays[month];
-			}
-
-			m++;
-			if (m == 12) {
-				m = 0;
-				y++;
-			}
-
-			day = day % 7;
+		System.out.println(year + " " + month + " " + leapYear(year));
+		if (month == 1 && leapYear(year)) {
+			monthDays[month] = 29;
+		} else {
+			monthDays[month] = 28;
 		}
+//		while (colbeKina(year, month, y, m)) {
+//			if (month == 1 && leapYear(year)) {
+//				day = 29;
+//				monthDays[month] = 29;
+//			} else {
+//				day = monthDays[month];
+//			}
+//
+//			m++;
+//			if (m == 12) {
+//				m = 0;
+//				y++;
+//			}
+//
+//			day = day % 7;
+//		}
 
 		Calendar c = Calendar.getInstance();
 		c.set(year, month, 1);
@@ -185,7 +190,7 @@ public class KalendarzView extends JFrame {
 	}
 
 	private boolean leapYear(int year) {
-		if (year % 4 == 0 && year % 400 == 0) {
+		if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
 			return true;
 		}
 		return false;
